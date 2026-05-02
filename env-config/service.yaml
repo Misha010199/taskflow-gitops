@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: task-backend-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: backend
   ports:
