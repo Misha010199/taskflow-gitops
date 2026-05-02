@@ -64,7 +64,7 @@ export default function App() {
       await API.put(`/tasks/${draggableId}`, {
         status: destination.droppableId,
       });
-      fetchAnalytics(); // Refresh analytics
+      fetchAnalytics();
     } catch (error) {
       console.error("Failed to update task status", error);
       fetchTasks();
@@ -77,7 +77,7 @@ export default function App() {
     labels = [],
     priority = "medium",
     dueDate = null,
-    description = "", // ✅ ADD description parameter
+    description = "",
   ) => {
     const taskTitle = title || prompt("Enter task title:");
     if (!taskTitle || taskTitle.trim() === "") return;
@@ -91,7 +91,7 @@ export default function App() {
         labels,
         priority,
         due_date: dueDate,
-        description, // ✅ ADD description to payload
+        description,
       });
       setTasks([...tasks, res.data[0]]);
       fetchAnalytics();
@@ -257,7 +257,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Main Content */}
       <div
         className={`main-content ${sidebarOpen ? "sidebar-open" : "sidebar-closed"}`}
       >

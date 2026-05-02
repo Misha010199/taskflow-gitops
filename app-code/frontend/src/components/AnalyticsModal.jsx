@@ -47,7 +47,6 @@ export default function AnalyticsModal({ data, onClose, darkMode }) {
         </div>
 
         <div className="analytics-content">
-          {/* Summary Stats */}
           <div className="stats-grid">
             <div className="stat-card">
               <FontAwesomeIcon
@@ -82,7 +81,6 @@ export default function AnalyticsModal({ data, onClose, darkMode }) {
             </div>
           </div>
 
-          {/* Priority Distribution */}
           <div className="analytics-section">
             <h3>
               <FontAwesomeIcon icon={faFlag} />
@@ -112,7 +110,6 @@ export default function AnalyticsModal({ data, onClose, darkMode }) {
             </div>
           </div>
 
-          {/* Labels Distribution */}
           {Object.keys(data.labels_count).length > 0 && (
             <div className="analytics-section">
               <h3>
@@ -134,7 +131,6 @@ export default function AnalyticsModal({ data, onClose, darkMode }) {
             </div>
           )}
 
-          {/* Completion Trend */}
           <div className="analytics-section">
             <h3>
               <FontAwesomeIcon icon={faArrowTrendUp} />
@@ -157,7 +153,6 @@ export default function AnalyticsModal({ data, onClose, darkMode }) {
             </div>
           </div>
 
-          {/* Task Status Distribution */}
           <div className="analytics-section">
             <h3>Task Status</h3>
             <div className="status-donut">

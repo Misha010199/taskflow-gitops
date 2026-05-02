@@ -36,7 +36,7 @@ export default function CreateTaskModal({
       alert("Please enter a task title");
       return;
     }
-    // ✅ FIX: Add description as 6th parameter
+
     onSave(title, columnStatus, labels, priority, dueDate || null, description);
     onClose();
   };

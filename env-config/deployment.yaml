@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: backend
-          image: asia-south1-docker.pkg.dev/YOUR_PROJECT_ID/task-repo/backend:latest
+          image: asia-south1-docker.pkg.dev/taskflow-gitops/task-repo/backend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           env:
@@ -40,6 +41,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: asia-south1-docker.pkg.dev/YOUR_PROJECT_ID/task-repo/frontend:latest
+          image: asia-south1-docker.pkg.dev/taskflow-gitops/task-repo/frontend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 80

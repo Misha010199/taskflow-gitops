@@ -17,13 +17,11 @@ body {
   transition: all 0.3s ease;
 }
 
-/* ========== LIGHT MODE - MORE VIBRANT PURPLE ========== */
 .light-mode {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   position: relative;
 }
 
-/* Add animated particles effect */
 .light-mode::before {
   content: "";
   position: absolute;
@@ -148,7 +146,6 @@ body {
   background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
 }
 
-/* ========== DARK MODE - ENHANCED ========== */
 .dark-mode {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f1a 100%);
 }
@@ -205,7 +202,6 @@ body {
   color: transparent;
 }
 
-/* SIDEBAR */
 .sidebar {
   position: fixed;
   left: 0;
@@ -414,7 +410,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* MAIN CONTENT */
 .main-content {
   flex: 1;
   margin-left: 280px;
@@ -474,7 +469,6 @@ body {
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
-/* LOADING */
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -499,7 +493,6 @@ body {
   }
 }
 
-/* BOARD */
 .board-container {
   display: flex;
   gap: 24px;
@@ -510,7 +503,6 @@ body {
   padding-bottom: 70px;
 }
 
-/* COLUMN */
 .column {
   border-radius: 16px;
   width: 340px;
@@ -618,7 +610,6 @@ body {
   max-height: calc(100vh - 220px);
 }
 
-/* Custom Scrollbar */
 .tasks-container::-webkit-scrollbar {
   width: 6px;
 }
@@ -645,7 +636,6 @@ body {
   background: #6b6b8a;
 }
 
-/* EMPTY STATE */
 .empty-state {
   text-align: center;
   padding: 40px 20px;
@@ -674,7 +664,6 @@ body {
   transition: all 0.2s;
 }
 
-/* TASK CARD */
 .task-card {
   border-radius: 12px;
   margin-bottom: 12px;
@@ -788,7 +777,6 @@ body {
   gap: 6px;
 }
 
-/* ADD CARD FOOTER */
 .add-card-footer {
   margin: 12px;
   padding: 10px;
@@ -805,7 +793,6 @@ body {
   font-weight: 500;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .sidebar.open {
     width: 250px;
@@ -853,7 +840,6 @@ body {
   font-weight: 600;
 }
 
-/* Analytics Button in Sidebar */
 .analytics-btn-sidebar {
   width: 100%;
   padding: 12px;
@@ -877,7 +863,6 @@ body {
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
 }
 
-/* Task Priority Badge */
 .task-priority {
   display: inline-flex;
   align-items: center;
@@ -890,7 +875,6 @@ body {
   color: white;
 }
 
-/* Task Labels */
 .task-labels {
   display: flex;
   flex-wrap: wrap;
@@ -909,7 +893,6 @@ body {
   color: white;
 }
 
-/* Overdue Task Styling */
 .task-card.overdue {
   border-left-color: #ef4444;
   background: rgba(239, 68, 68, 0.05);
@@ -934,7 +917,6 @@ body {
   gap: 6px;
 }
 
-/* Fix for closed sidebar toggle button */
 .sidebar.closed .sidebar-header {
   justify-content: center;
   padding: 20px 0;
@@ -948,7 +930,6 @@ body {
   margin: 0;
 }
 
-/* Footer improvements */
 .app-footer {
   position: fixed;
   bottom: 0;
@@ -971,13 +952,11 @@ body {
   left: 70px;
 }
 
-/* Light mode footer */
 .light-mode .app-footer {
   background: rgba(255, 255, 255, 0.8);
   color: #4a5568;
 }
 
-/* Dark mode footer */
 .dark-mode .app-footer {
   background: rgba(0, 0, 0, 0.4);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -1008,7 +987,6 @@ body {
   text-decoration: underline;
 }
 
-/* Dark mode API link */
 .dark-mode .api-link {
   color: #a78bfa;
 }

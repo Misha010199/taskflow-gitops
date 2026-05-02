@@ -1,5 +1,4 @@
 steps:
-  # Build backend
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
@@ -9,7 +8,6 @@ steps:
         "./app-code/backend",
       ]
 
-  # Build frontend
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
@@ -19,7 +17,6 @@ steps:
         "./app-code/frontend",
       ]
 
-  # Push backend
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
@@ -27,7 +24,6 @@ steps:
         "asia-south1-docker.pkg.dev/$PROJECT_ID/task-repo/backend:latest",
       ]
 
-  # Push frontend
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
@@ -35,7 +31,6 @@ steps:
         "asia-south1-docker.pkg.dev/$PROJECT_ID/task-repo/frontend:latest",
       ]
 
-  # Deploy to Kubernetes
   - name: "gcr.io/cloud-builders/kubectl"
     args: ["apply", "-f", "env-config/"]
     env:

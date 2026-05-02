@@ -96,7 +96,6 @@ export default function TaskCard({
 
               <p className="task-title">{task.title}</p>
 
-              {/* Priority Badge */}
               <div
                 className="task-priority"
                 style={{ backgroundColor: priority.color }}
@@ -105,7 +104,6 @@ export default function TaskCard({
                 <span>{priority.label}</span>
               </div>
 
-              {/* Labels */}
               {task.labels && task.labels.length > 0 && (
                 <div className="task-labels">
                   {task.labels.map((label, idx) => (

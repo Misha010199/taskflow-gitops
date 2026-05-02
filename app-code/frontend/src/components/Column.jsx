@@ -25,7 +25,6 @@ export default function Column({
     setDarkMode(isDark);
   }, []);
 
-  // ✅ FIX: Add description as 6th parameter
   const handleAddCard = (
     title,
     status,
