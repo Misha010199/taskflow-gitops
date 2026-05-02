@@ -1,0 +1,263 @@
+/* ========== MODAL OVERLAY ========== */
+.details-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ========== MODAL CONTAINER ========== */
+.details-modal {
+  width: 90%;
+  max-width: 550px;
+
+  height: 90vh; /* 🔥 FIX */
+  display: flex; /* 🔥 IMPORTANT */
+  flex-direction: column; /* 🔥 IMPORTANT */
+
+  border-radius: 24px;
+  overflow: hidden; /* 🔥 CHANGE THIS */
+}
+
+/* Custom scrollbar for modal */
+.details-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.details-modal::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.details-modal::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 10px;
+}
+
+.details-modal::-webkit-scrollbar-thumb:hover {
+  background: #764ba2;
+}
+
+/* ========== MODAL THEMES ========== */
+.details-modal.light {
+  background: white;
+  color: #1a1a2e;
+}
+
+.details-modal.dark {
+  background: #1a1a2e;
+  color: #e2e8f0;
+}
+
+/* ========== MODAL ANIMATION ========== */
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== MODAL HEADER (Sticky) ========== */
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  background: inherit;
+  z-index: 10;
+}
+
+.dark .details-header {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  background: #1a1a2e;
+}
+
+.light .details-header {
+  background: white;
+}
+
+.details-header h2 {
+  font-size: 20px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  color: inherit;
+}
+
+.close-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ========== MODAL CONTENT ========== */
+.details-content {
+  padding: 24px;
+  overflow-y: auto; /* 🔥 SCROLL HERE */
+  flex: 1; /* 🔥 IMPORTANT */
+}
+/* ========== FORM FIELDS ========== */
+.detail-field {
+  margin-bottom: 20px;
+}
+
+.detail-field label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+.detail-field input,
+.detail-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  font-size: 14px;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.dark .detail-field input,
+.dark .detail-field textarea {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.detail-field input:focus,
+.detail-field textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.title-input {
+  font-weight: 600;
+  font-size: 16px !important;
+}
+
+/* ========== PRIORITY & LABEL BUTTONS ========== */
+.priority-buttons,
+.label-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.priority-btn,
+.label-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 2px solid;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+  background: transparent;
+}
+
+.priority-btn:hover,
+.label-btn:hover {
+  transform: scale(1.05);
+}
+
+.priority-btn.active,
+.label-btn.active {
+  color: white;
+}
+
+.date-input {
+  cursor: pointer;
+}
+
+/* ========== MODAL FOOTER (Sticky) ========== */
+.details-actions {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  position: sticky;
+  bottom: 0;
+  background: inherit;
+}
+
+.dark .details-actions {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.light .details-actions {
+  background: white;
+}
+
+.dark .details-actions {
+  background: #1a1a2e;
+}
+
+/* ========== SAVE BUTTON ========== */
+.save-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* ========== DISABLED INPUT STYLES ========== */
+.detail-field input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark .detail-field input:disabled {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ========== TEXTAREA RESIZE ========== */
+.detail-field textarea {
+  resize: vertical;
+  min-height: 80px;
+}

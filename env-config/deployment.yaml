@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: asia-south1-docker.pkg.dev/YOUR_PROJECT_ID/task-repo/backend:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: SUPABASE_URL
+              value: "https://nmhfycxblrzahdffhqsb.supabase.co"
+            - name: SUPABASE_KEY
+              value: "sb_publishable_V6Pa-VkiUF8pTxIqtU9GYQ_nhtNbvIG"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: asia-south1-docker.pkg.dev/YOUR_PROJECT_ID/task-repo/frontend:latest
+          ports:
+            - containerPort: 80
