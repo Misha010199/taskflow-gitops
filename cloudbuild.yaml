@@ -36,3 +36,6 @@ steps:
     env:
       - "CLOUDSDK_COMPUTE_REGION=asia-south1"
       - "CLOUDSDK_CONTAINER_CLUSTER=cluster-1"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
