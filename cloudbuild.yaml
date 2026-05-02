@@ -12,6 +12,7 @@ steps:
     args:
       [
         "build",
+        "--no-cache",
         "-t",
         "asia-south1-docker.pkg.dev/$PROJECT_ID/task-repo/frontend:latest",
         "./app-code/frontend",
