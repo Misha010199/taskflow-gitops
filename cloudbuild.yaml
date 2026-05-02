@@ -35,4 +35,4 @@ steps:
     args: ["apply", "-f", "env-config/"]
     env:
       - "CLOUDSDK_COMPUTE_REGION=asia-south1"
-      - "CLOUDSDK_CONTAINER_CLUSTER=task-cluster"
+      - "CLOUDSDK_CONTAINER_CLUSTER=cluster-1"
