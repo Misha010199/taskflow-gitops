@@ -40,7 +40,6 @@ def add_task():
         
         res = supabase.table("tasks").insert(task_data).execute()
         
-       
         supabase.table("activity_log").insert({
             "task_id": res.data[0]["id"],
             "action": "created",
@@ -48,6 +47,7 @@ def add_task():
         }).execute()
         
         return jsonify(res.data)
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -59,7 +59,15 @@ def update_task(id):
     try:
        
         update_data = {}
-        allowed_fields = ["title", "status", "labels", "priority", "due_date", "description"]
+
+        allowed_fields = [
+            "title",
+            "status",
+            "labels",
+            "priority",
+            "due_date",
+            "description"
+        ]
         
         for field in allowed_fields:
             if field in body:
@@ -67,7 +75,6 @@ def update_task(id):
         
         res = supabase.table("tasks").update(update_data).eq("id", id).execute()
         
-    
         supabase.table("activity_log").insert({
             "task_id": id,
             "action": "updated",
@@ -75,8 +82,10 @@ def update_task(id):
         }).execute()
         
         return jsonify(res.data)
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/tasks/<int:id>", methods=["DELETE"])
 def delete_task(id):
@@ -84,7 +93,9 @@ def delete_task(id):
        
         supabase.table("activity_log").delete().eq("task_id", id).execute()
         supabase.table("tasks").delete().eq("id", id).execute()
+
         return jsonify({"message": "deleted"})
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -93,50 +104,79 @@ def delete_task(id):
 def get_analytics():
     try:
         
-        tasks = supabase.table("tasks").select("*").execute()
+        tasks = supabase.table("tasks").select(
+            "status,labels,priority,due_date,created_at,updated_at"
+        ).execute()
+
         tasks_data = tasks.data
         
-       
-        activities = supabase.table("activity_log").select("*").execute()
-        
-        
         total = len(tasks_data)
-        completed = len([t for t in tasks_data if t.get("status") == "done"])
-        in_progress = len([t for t in tasks_data if t.get("status") == "doing"])
-        todo = len([t for t in tasks_data if t.get("status") == "todo"])
-        
+
+        completed = len([
+            t for t in tasks_data
+            if t.get("status") == "done"
+        ])
+
+        in_progress = len([
+            t for t in tasks_data
+            if t.get("status") == "doing"
+        ])
+
+        todo = len([
+            t for t in tasks_data
+            if t.get("status") == "todo"
+        ])
         
         labels_count = {}
+
         for task in tasks_data:
             for label in task.get("labels", []):
                 labels_count[label] = labels_count.get(label, 0) + 1
         
-       
         priority_count = {
-            "high": len([t for t in tasks_data if t.get("priority") == "high"]),
-            "medium": len([t for t in tasks_data if t.get("priority") == "medium"]),
-            "low": len([t for t in tasks_data if t.get("priority") == "low"])
+            "high": len([
+                t for t in tasks_data
+                if t.get("priority") == "high"
+            ]),
+            "medium": len([
+                t for t in tasks_data
+                if t.get("priority") == "medium"
+            ]),
+            "low": len([
+                t for t in tasks_data
+                if t.get("priority") == "low"
+            ])
         }
         
-      
         now = datetime.now().isoformat()
-        overdue = len([t for t in tasks_data if t.get("due_date") and t.get("due_date") < now and t.get("status") != "done"])
+
+        overdue = len([
+            t for t in tasks_data
+            if t.get("due_date")
+            and t.get("due_date") < now
+            and t.get("status") != "done"
+        ])
         
-       
-        last_week = (datetime.now() - timedelta(days=7)).isoformat()
-        created_last_week = len([t for t in tasks_data if t.get("created_at", "") > last_week])
-        
+        last_week = (
+            datetime.now() - timedelta(days=7)
+        ).isoformat()
+
+        created_last_week = len([
+            t for t in tasks_data
+            if t.get("created_at", "") > last_week
+        ])
         
         completion_trend = []
+
         for i in range(6, -1, -1):
+
             day = datetime.now() - timedelta(days=i)
-            day_start = day.replace(hour=0, minute=0, second=0).isoformat()
-            day_end = day.replace(hour=23, minute=59, second=59).isoformat()
-            
+
             completed_count = len([
-                t for t in tasks_data 
-                if t.get("status") == "done" 
-                and t.get("updated_at", "").split('T')[0] == day.strftime('%Y-%m-%d')
+                t for t in tasks_data
+                if t.get("status") == "done"
+                and t.get("updated_at", "")[:10]
+                == day.strftime('%Y-%m-%d')
             ])
             
             completion_trend.append({
@@ -149,15 +189,21 @@ def get_analytics():
             "completed": completed,
             "in_progress": in_progress,
             "todo": todo,
-            "completion_rate": round((completed / total * 100) if total > 0 else 0, 1),
+            "completion_rate": round(
+                (completed / total * 100)
+                if total > 0 else 0,
+                1
+            ),
             "labels_count": labels_count,
             "priority_count": priority_count,
             "overdue": overdue,
             "created_last_week": created_last_week,
             "completion_trend": completion_trend
         })
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
